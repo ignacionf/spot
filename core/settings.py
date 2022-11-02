@@ -17,13 +17,10 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-env = environ.Env(
-    DEBUG=(bool, False),
-    SECRET_KEY=(str,"112233445566778899")
-)
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+env = environ.Env(DEBUG=(bool, False), SECRET_KEY=(str, "112233445566778899"))
 
-DEBUG = env('DEBUG')
+DEBUG = env("DEBUG")
 
 
 # Quick-start development settings - unsuitable for production
@@ -33,7 +30,7 @@ DEBUG = env('DEBUG')
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = env("DEBUG")
 
 ALLOWED_HOSTS = []
 
@@ -47,8 +44,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'songs',
-    'artists'
+    "songs",
+    "artists",
 ]
 
 MIDDLEWARE = [
@@ -134,4 +131,4 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-TOP100_SONGS_URL = env.str('TOP100_SONGS_URL')
+TOP100_SONGS_URL = env.str("TOP100_SONGS_URL")
