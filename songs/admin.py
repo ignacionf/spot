@@ -3,7 +3,7 @@ from .models import Song, Genre
 
 @admin.register(Song)
 class SongAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'artist')
+    list_display = ('id', 'order', 'name', 'artist', 'release_date')
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):

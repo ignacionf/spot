@@ -24,13 +24,14 @@ class Command(BaseCommand):
 
         data = r.json()
         Artist.objects.all().delete()
+        order = 1
         for song in data['feed']['results']:
-            print(song)
-
             instance = Song(
                 id=song['id'],
                 name=song['name'],
-                url=song['url']
+                url=song['url'],
+                release_date=song['releaseDate'],
+                order=order
             )
 
             # defaults prevents diff names of artists, like: {'id': 1276656483, 'name': 'Lil Baby'}
@@ -50,3 +51,7 @@ class Command(BaseCommand):
                             ) for genre in song['genres']]
 
             instance.genres.add(*[x[0] for x in genres])
+
+            order = order + 1
+
+        self.stdout.write(self.style.SUCCESS('Successfully populated songs'))
