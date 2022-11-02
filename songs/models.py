@@ -12,3 +12,6 @@ class Song(models.Model):
 
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     genres = models.ManyToManyField(Genre)
+
+    def __str__(self):
+        return f"{self.artist} : {self.name}"
