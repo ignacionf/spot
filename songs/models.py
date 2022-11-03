@@ -9,6 +9,9 @@ class Genre(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ["name"]
+
 
 class Song(models.Model):
     name = models.CharField("Song Name", max_length=255)
