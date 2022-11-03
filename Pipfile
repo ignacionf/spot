@@ -8,6 +8,7 @@ django = "*"
 requests = "*"
 django-environ = "*"
 pre-commit = "*"
+djangorestframework = "*"
 
 [dev-packages]
 
