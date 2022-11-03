@@ -1,6 +1,12 @@
 # spot
 
-A simpel apple song filter. Requires python >= 3.9
+A simple apple top100 song filter. It exposes various api for:
+- Search the list by song name or artist
+- Get top 50
+- Get songs grouped by genre
+- Create/Delete a song
+
+  Requires python >= 3.9
 
 ## Environ
 
