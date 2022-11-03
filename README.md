@@ -4,7 +4,7 @@ A simpel apple song filter. Requires python >= 3.9
 
 ## Environ
 
-In the root folder of the project add the .env file with:
+In the root folder of the project add the `.env` file with:
 
 ```
 DEBUG=True
