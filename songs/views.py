@@ -5,6 +5,7 @@ from rest_framework.decorators import action
 from rest_framework import status
 
 from .models import Song
+from artists.models import Artist
 from .serializers import SongSerializer
 
 
@@ -48,14 +49,13 @@ class SongViewSet(viewsets.ViewSet):
         print(request.POST)
         try:
             song = Song(
-                id=request.POST["id"][0],
-                name=request.POST["name"][0],
-                artist_id=int(request.POST["artist_id"][0]),
-                url=request.POST["url"][0],
-                release_date=request.POST["release_date"][0],
-                order=int(request.POST["order"][0]),
+                id=request.POST["id"],
+                name=request.POST["name"],
+                artist_id=int(request.POST["artist_id"]),
+                url=request.POST["url"],
+                release_date=request.POST["release_date"],
+                order=int(request.POST["order"]),
             )
-            print(song)
             song.save()
             song.genres.add(request.POST["genres"])
         except MultiValueDictKeyError as e:
