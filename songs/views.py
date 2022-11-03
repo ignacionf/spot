@@ -57,7 +57,7 @@ class SongViewSet(viewsets.ViewSet):
                 order=int(request.POST["order"]),
             )
             song.save()
-            song.genres.add(request.POST["genres"])
+            [song.genres.add(int(x)) for x in request.POST.getlist("genres")]
         except MultiValueDictKeyError as e:
             return Response(
                 {"errors": [f"The {e} field is required"]},
