@@ -27,8 +27,7 @@ class Command(BaseCommand):
 
         data = r.json()
         Artist.objects.all().delete()
-        order = 1
-        for song in data["feed"]["results"]:
+        for order, song in enumerate(data["feed"]["results"], start=1):
             instance = Song(
                 id=song["id"],
                 name=song["name"],
@@ -54,7 +53,5 @@ class Command(BaseCommand):
             ]
 
             instance.genres.add(*[x[0] for x in genres])
-
-            order = order + 1
 
         self.stdout.write(self.style.SUCCESS("Successfully populated songs"))
