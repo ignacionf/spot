@@ -1,3 +1,4 @@
+from django.utils.datastructures import MultiValueDictKeyError
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -43,5 +44,24 @@ class SongViewSet(viewsets.ViewSet):
         return Response({"action": "deleted"})
 
     def create(self, request):
-        Song.create(*request.POST)
-        return Response({"action": "created"})
+
+        print(request.POST)
+        try:
+            song = Song(
+                id=request.POST["id"][0],
+                name=request.POST["name"][0],
+                artist_id=int(request.POST["artist_id"][0]),
+                url=request.POST["url"][0],
+                release_date=request.POST["release_date"][0],
+                order=int(request.POST["order"][0]),
+            )
+            print(song)
+            song.save()
+            song.genres.add(request.POST["genres"])
+        except MultiValueDictKeyError as e:
+            return Response(
+                {"errors": [f"The {e} field is required"]},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        return Response(SongSerializer(song).data)
